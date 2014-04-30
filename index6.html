@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Using JSON</title>
+        
+        <script language="javascript" type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script language="javascript" type="text/javascript">
+
+          function displayInfo() 
+          {
+            $.ajax({                                      
+              url: "http://www.gms-uk.co.uk/sNOW/JSON3.php",         
+              data: "",
+              dataType: 'json',     
+              success: function(data)
+              {
+                    for(var i = 0; i < data.length-1; i++)
+                    {
+                        var id = data[0];
+                        var Publication = data[1];
+                        var Title = data[2];
+                        var Date = data[3];
+                        var Status = data[4];
+                        
+                        var item = data[i];
+                        document.write("<b>id: </b>"+item.id+"<br/><b> Publication name: </b>"+item.Publication+"<br/><b> Title: </b>"+item.Title+"<br/><b> Date: </b>"+item.Date+"<br/><b> Status: </b>"+item.Status+"</p></p>");
+                        // alert(item.Publication);
+                    }
+
+                // $('#output').html("<b>id: </b>"+item.id+"<b> Publication name: </b>"+item.Publication+"<b> Title: </b>"+item.Title+"<b> Date: </b>"+item.Date+"<b> Status: </b>"+item.Status);
+                // $('#output').html("<b>id: </b>"+id+"<b> Publication name: </b>"+Publication+"<b> Title: </b>"+Title+"<b> Date: </b>"+Date+"<b> Status: </b>"+Status); //
+              } 
+            });
+          }
+        
+        </script>
+    </head>
+    
+    <body onload="displayInfo()">
+        
+        <h1>Fetching Data from php DB using JSON</h1>
+        
+        <div id="output"></div>
+        
+    </body>
+
+</html>
